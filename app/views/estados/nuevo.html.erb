@@ -1,0 +1,6 @@
+<h1>Formulario Estado</h1>
+
+<%= form_with(model: @estado,url: estado_crear_path ,local: true) do |form| %> 
+  <%= render 'formulario', estado: @estado, form: f%>
+<% end %>
+<%= link_to 'Regresar', estados_inicio_path %>

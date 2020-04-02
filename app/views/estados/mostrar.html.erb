@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<h1>Consultar Estado</h1>
+<p>
+  <strong>Nombre:</strong>
+  <%= @estado.nombre %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @estado.descripcion %>
+</p>
+
+<p>
+  <strong>Pais:</strong>
+  <%= @estado.pais_id %>
+</p>
+
+<%= link_to 'Regresar', estados_inicio_path %>
