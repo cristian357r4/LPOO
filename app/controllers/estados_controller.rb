@@ -1,6 +1,20 @@
 class EstadosController < ApplicationController
   def inicio
-    @estados = Estado.all
+    values = {}
+    if params[:nombre].present?
+      values[:nombre] = params[:nombre]
+      
+    end
+    if params[:descripcion].present?
+      values[:descripcion] = params[:descripcion]
+      
+    end
+    if params[:pais].present?
+      values[:pais] = params[:pais]
+      
+    end
+      
+    @estados = Estado.where(values).paginate(:page => params[:page], :per_page => 2)
   end
   
   def nuevo
@@ -31,7 +45,7 @@ class EstadosController < ApplicationController
   end
 
   def actualizar
-    @estado = Estado.find(params[ :estado][:id])
+    @estado = Estado.find(params[:estado][:id])
     #@estado = Estado.update(nombre: params[:estado][:nombre], descripcion: params[:estado][:descripcion], pais_id: params[:estado][:pais_id])
 
     respond_to do |format|

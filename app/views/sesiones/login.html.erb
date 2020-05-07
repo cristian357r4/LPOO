@@ -1,0 +1,26 @@
+<h1>Login</h1>
+<p id="alert"> <%= alert %> </p>
+
+
+<%=form_tag(validar_usuario_path) do %>
+
+	<table>
+		<tr>
+			<th>Login</th>
+			<td><%= text_field_tag 'login', nil, placeholder: 'Ingresa login', :class => 'text_field'%></td>
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td><%= password_field_tag 'password', nil, placeholder: 'Ingresa password', :class => 'text_field'%></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<%= submit_tag "Ingresa"%>
+			</td>
+		</tr>
+
+	</table>
+
+<% end %>
+

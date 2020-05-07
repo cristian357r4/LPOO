@@ -1,0 +1,43 @@
+<p id="notice"><%= notice%></p>
+<p id="alert"><%= alert%></p>
+<h1>Paises</h1>
+
+<%= form_tag(buscar_pais_path, method: :post) do %>
+  <table>
+    <tr>
+      <th>Nombre: </th>
+      <td><%= text_field_tag 'nombre', nil, placeholder: 'Ingresa Nombre'%></td>
+    </tr>
+    <tr>
+      <th>Descripcion: </th>
+      <td><%= text_field_tag 'descripcion', nil, placeholder: 'Ingresa Descripcion'%></td>
+    </tr>      
+    <tr>
+      <th></th>
+      <td><%= submit_tag 'Buscar'%></td>
+    </tr>
+  </table>
+<% end %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Descripcion</th>    
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @paises.each do |paises| %>
+    <tr>
+      <td><%= paises.nombre %></td>
+      <td><%= paises.descripcion %></td>    
+      <td><%= link_to 'Mostrar', mostrar_pais_path(paises.id) %></td>
+      <td><%= link_to 'Editar' , editar_pais_path(paises.id)%></td>
+      <td><%= link_to 'Eliminar',eliminar_pais_path(paises.id), method: :delete, data: {confirm: 'Estas seguro?'}%></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Nuevo Pais', pais_nuevo_path %>

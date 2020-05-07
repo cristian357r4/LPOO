@@ -2,7 +2,37 @@
 
 <h1>Usuarios</h1>
 
-<table>
+
+<%= form_tag(buscar_usuario_path, method: :post) do %>
+  <table>
+    <tr>
+      <th>RFC: </th>
+      <td><%= text_field_tag 'rfc', nil, placeholder: 'Ingresa RFC', class:"form-control"%></td>
+    </tr>
+    <tr>
+      <th>CURP: </th>
+      <td><%= text_field_tag 'curp', nil, placeholder: 'Ingresa CURP', class:"form-control"%></td>
+    </tr>
+    <tr>
+      <th>Nombre: </th>
+      <td><%= text_field_tag 'nombre', nil, placeholder: 'Ingresa Nombre', class:"form-control"%></td>
+    </tr>
+    <tr>
+      <th>Paterno: </th>
+      <td><%= text_field_tag 'paterno', nil, placeholder: 'Ingresa Paterno', class:"form-control"%></td>
+    </tr>
+    <tr>
+      <th>Materno: </th>
+      <td><%= text_field_tag 'materno', nil, placeholder: 'Ingresa Materno', class:"form-control"%></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><%= submit_tag 'Buscar'%></td>
+    </tr>
+  </table>
+<% end %>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Rfc</th>
@@ -38,14 +68,15 @@
         <td><%= usuario.login %></td>
         <td><%= usuario.password %></td>
         <td><%= usuario.estado_id %></td>
-        <td><%= link_to 'Show', usuario %></td>
+        <td><%= link_to image_tag('shearch.png', :alt => 'view image', :width => '18px', :height => '18px', :title => "Consultar", :style => 'border: 0px;'), usuario %></td>
         <td><%= link_to 'Edit', edit_usuario_path(usuario) %></td>
         <td><%= link_to 'Destroy', usuario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @usuarios, render: WillPaginate::ActionView::BootstrapLinkRenderer %>
 
 <br>
 
-<%= link_to 'New Usuario', new_usuario_path %>
+<%= link_to 'New Usuario', new_usuario_path, class: "btn btn-info"%>

@@ -5,29 +5,58 @@ class UsuariosController < ApplicationController
   # GET /usuarios
   # GET /usuarios.json
   def index
-    @usuarios = Usuario.all
+    values = {}
+    if params[:rfc].present?
+      values[:rfc] = params[:rfc]
+      
+    end
+    if params[:curp].present?
+      values[:curp] = params[:curp]
+      
+    end
+    if params[:nombre].present?
+      values[:nombre] = params[:nombre]
+      
+    end
+    if params[:paterno].present?
+      values[:paterno] = params[:paterno]
+      
+    end
+    if params[:materno].present?
+      values[:materno] = params[:materno]
+      
+    end
+
+      
+    #@usuarios = Usuario.where(values)
+    @usuarios = Usuario.where(values).paginate(:page => params[:page], :per_page => 2)
+    
 
   end
 
   # GET /usuarios/1
   # GET /usuarios/1.json
   def show
+    @estados = Estado.all
+
   end
 
   # GET /usuarios/new
   def new
     @usuario = Usuario.new
+    @estados = Estado.all
   end
 
   # GET /usuarios/1/edit
   def edit
+    @estados = Estado.all
   end
 
   # POST /usuarios
   # POST /usuarios.json
   def create
     @usuario = Usuario.new(usuario_params)
-
+    
     respond_to do |format|
       if @usuario.save
         format.html { redirect_to @usuario, notice: 'Usuario was successfully created.' }
@@ -42,6 +71,7 @@ class UsuariosController < ApplicationController
   # PATCH/PUT /usuarios/1
   # PATCH/PUT /usuarios/1.json
   def update
+
     respond_to do |format|
       if @usuario.update(usuario_params)
         format.html { redirect_to @usuario, notice: 'Usuario was successfully updated.' }

@@ -7,6 +7,13 @@ ruby '2.5.3'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 # Use jdbcmysql as the database for Active Record
 gem 'activerecord-jdbcmysql-adapter'
+
+gem 'jquery-rails'
+gem 'jquery-validation-rails'
+gem 'will_paginate-bootstrap4'
+
+gem 'will_paginate'
+gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

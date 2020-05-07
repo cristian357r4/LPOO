@@ -1,8 +1,29 @@
 <p id="notice"><%= notice%></p>
 <p id="alert"><%= alert%></p>
 <h1>Estados</h1>
-
-<table>
+<div>
+  <%= form_tag(buscar_estado_path, method: :post) do %>
+    <table>
+      <tr>
+        <th>Nombre: </th>
+        <td><%= text_field_tag 'nombre', nil, placeholder: 'Ingresa Nombre' , class:"form-control"%></td>
+      </tr>
+      <tr>
+        <th>Descripcion: </th>
+        <td><%= text_field_tag 'descripcion', nil, placeholder: 'Ingresa Descripcion', class:"form-control"%></td>
+      </tr>
+      <tr>
+        <th>Pais: </th>
+        <td><%= text_field_tag 'pais', nil, placeholder: 'Ingresa Pais', class:"form-control"%></td>
+      </tr>    
+      <tr>
+        <th></th>
+        <td><%= submit_tag 'Buscar', class:"btn btn-primary"%></td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+<table class="table table-striped">
   <thead>
   <tr>
     <th>Nombre</th>
@@ -17,12 +38,14 @@
       <td><%= estado.nombre %></td>
       <td><%= estado.descripcion %></td>
       <td><%= estado.pais_id %></td>
-      <td><%= link_to 'Mostrar', mostrar_estado_path(estado.id) %></td>
-      <td><%= link_to 'Editar' , editar_estado_path(estado.id)%></td>
-      <td><%= link_to 'Eliminar',eliminar_estado_path(estado.id), method: :delete, data: {confirm: 'Estas seguro?'}%></td>
+      <td><%= link_to  image_tag('shearch.png', :alt => 'view image', :width => '18px', :height => '18px', :title => "Mostrar", :style => 'border: 0px;'), mostrar_estado_path(estado.id) %></td>
+      <td><%= link_to  image_tag('editar.png', :alt => 'view image', :width => '18px', :height => '18px', :title => "Editar", :style => 'border: 0px;'), editar_estado_path(estado.id)%></td>
+      <td><%= link_to  image_tag('trash.png', :alt => 'view image', :width => '18px', :height => '18px', :title => "Eliminar", :style => 'border: 0px;'),eliminar_estado_path(estado.id), method: :delete, data: {confirm: 'Estas seguro?'}%></td>
     </tr>
   <% end %>
   </tbody>
 </table>
+<%= will_paginate @estados %>
+<br>
 
-<%= link_to 'Nuevo Estado', estado_nuevo_path %>
+<%= link_to 'Nuevo Estado', estado_nuevo_path, class: "btn btn-info" %>

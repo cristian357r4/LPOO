@@ -1,4 +1,4 @@
-<%= form_with(model: usuario, local: true) do |form| %>
+<%= form_with(model: usuario, id: 'formulario_usuarios', local: true) do |form| %>
   <% if usuario.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
@@ -57,8 +57,9 @@
   </div>
 
   <div class="field">
-    <%= form.label :sexo %>
-    <%= form.text_field :sexo %>
+    <%= form.label :sexo %>    
+    <%= form.radio_button(:sexo,'F')%>Femenino
+    <%= form.radio_button(:sexo,'M')%>Masculino
   </div>
 
   <div class="field">
@@ -68,15 +69,16 @@
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.text_field :password %>
+    <%= form.password_field :password %>
   </div>
 
   <div class="field">
-    <%= form.label :estado_id %>
-    <%= form.text_field :estado_id %>
+    <%= form.label :estado_id %>    
+    <%= form.select( :estado_id , @estados.collect{ |e| [e.nombre,e.id]}, {include_blank: 'Seleccionar uno'})%>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
